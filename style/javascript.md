@@ -8,9 +8,9 @@
   * [Indentation](#indentation)
   * [Braces](#braces)
 
-+* [Libraries](#libraries)
- +  * [jQuery](#jquery)
- +  * [React](#react)
+* [Libraries](#libraries)
+  * [jQuery](#jquery)
+  * [React](#react)
 
 This guide is adapted from the Khan Academy style guide.
 

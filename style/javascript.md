@@ -8,6 +8,9 @@
   * [Indentation](#indentation)
   * [Braces](#braces)
 
++* [Libraries](#libraries)
+ +  * [jQuery](#jquery)
+ +  * [React](#react)
 
 This guide is adapted from the Khan Academy style guide.
 
@@ -138,3 +141,27 @@ var cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
 ### Inline comments
 
 Inline comments should be the `//` kind not `/* */` kind.
+
+
+
+----------
+### Libraries
+
+#### jQuery
+
+jQuery should be used for incidental javascript that can not be represented by a react component.
+
+##### Naming
+
+jQuery objects should be prefixed with `$`.
+
+```js
+var $selection = $('.myClass');
+
+```
+
+#### React
+
+React should be used for non-trivial UI.
+
+See [React Style Guide](react.md) for further details.

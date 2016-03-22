@@ -111,29 +111,29 @@ Imports should be sorted lexicographically (as per unix `sort`).
 
 No:
 ```js
-var _ = require("underscore");
-var $ = require("jquery");
-var APIActionResults = require("../shared-package/api-action-results.js");
-var Cookies = require("../shared-package/cookies.js");
-var cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
-var HappySurvey = require("../missions-package/happy-survey.jsx");
-var DashboardActions = require('./datastores/dashboard-actions.js');
-var React = require("react");
-var UserMission = require("../missions-package/user-mission.js");
+const _ = require("underscore");
+const $ = require("jquery");
+const APIActionResults = require("../shared-package/api-action-results.js");
+const Cookies = require("../shared-package/cookies.js");
+const cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
+const HappySurvey = require("../missions-package/happy-survey.jsx");
+const DashboardActions = require('./datastores/dashboard-actions.js');
+const React = require("react");
+const UserMission = require("../missions-package/user-mission.js");
 ```
 
 Yes:
 ```js
-var $ = require("jquery");
-var React = require("react");
-var _ = require("underscore");
+const $ = require("jquery");
+const React = require("react");
+const _ = require("underscore");
 
-var APIActionResults = require("../shared-package/api-action-results.js");
-var Cookies = require("../shared-package/cookies.js");
-var DashboardActions = require('./datastores/dashboard-actions.js');
-var HappySurvey = require("../missions-package/happy-survey.jsx");
-var UserMission = require("../missions-package/user-mission.js");
-var cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
+const APIActionResults = require("../shared-package/api-action-results.js");
+const Cookies = require("../shared-package/cookies.js");
+const DashboardActions = require('./datastores/dashboard-actions.js');
+const HappySurvey = require("../missions-package/happy-survey.jsx");
+const UserMission = require("../missions-package/user-mission.js");
+const cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
 ```
 
 ------------------------------

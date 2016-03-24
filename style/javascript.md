@@ -12,6 +12,8 @@
   * [jQuery](#jquery)
   * [React](#react)
 
+* [ES6/7 rules](#es67-rules) 
+
 This guide is adapted from the Khan Academy style guide.
 
 ----------

@@ -152,15 +152,6 @@ Inline comments should be the `//` kind not `/* */` kind.
 
 jQuery should be used for incidental javascript that can not be represented by a react component.
 
-##### Naming
-
-jQuery objects should be prefixed with `$`.
-
-```js
-var $selection = $('.myClass');
-
-```
-
 #### React
 
 React should be used for non-trivial UI.

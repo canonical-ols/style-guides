@@ -42,3 +42,14 @@ Also there is no such BEM entity as a modifier and an element modifier simultane
 ```css
 'block_block-mod-name_block-mod-val__elem-name_elem-mod-name_elem-mod-val'
 ```
+
+For clarity, the only allowed patterns in BEM are:
+
+```
+.b-block {}
+.b-block_modifier {}
+.b-block_modifier_value {}
+.b-block__element {}
+.b-block__element_modifier {}
+.b-block__element_modifier_value {}
+```

@@ -13,10 +13,10 @@ more than one.
 
 #### React classes should be named
 
-Use a named variable or `displayName` property for React to properly store name
+Use a named const for React to properly store name
 of the class -- this helps when debugging components.
 
-Preferred syntax:
+Yes:
 
 ```js
 const MyComponent = React.createClass({
@@ -24,16 +24,6 @@ const MyComponent = React.createClass({
 });
 
 module.exports = MyComponent;
-```
-
-Also OK:
-
-```js
-module.exports = React.createClass({
-  displayName: 'MyComponent',
-
-  render: function(){ /* ... */ }
-});
 ```
 
 No (React "guesses" the name of the class as `exports`):

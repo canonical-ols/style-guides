@@ -1,10 +1,11 @@
 ## Git & Github Best Practice
 
 ---
-### Merge Proposals
+### Pull Requests (Merge Proposals)
 
 * You may merge pull requests for branches you have authored to master after a +1 from a teammate.
 * Avoid merging branches you do not own, unless explicitly requested.
+* Please delete branches after merging to master, to keep the repo tidy.
 
 #### Rebasing Pull Requests
 

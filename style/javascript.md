@@ -12,7 +12,9 @@
   * [jQuery](#jquery)
   * [React](#react)
 
-* [ES6/7 rules](#es67-rules) 
+* [ES6/7 rules](#es67-rules)
+
+* [Module pattern](#module-pattern)
 
 This guide is adapted from the Khan Academy style guide.
 
@@ -62,9 +64,26 @@ var z = y._privateMember;     // NOT OK!
 
 #### File names
 
+All file names should be written in `snake_case` (lower case, separated with underscore).
+
+Yes:
+
 ```
-file-names-like-this.js
-template-names-like-this.handlebars
+my_module_bundle
+├── entry.js
+├── my_module.js
+└── tests
+    └── test_my_module.js
+```
+
+
+No:
+```
+my-module-bundle
+├── entry.js
+├── MyModule.js
+└── tests
+    └── testmymodule.js
 ```
 
 #### Indentation
@@ -115,13 +134,13 @@ No:
 ```js
 const _ = require("underscore");
 const $ = require("jquery");
-const APIActionResults = require("../shared-package/api-action-results.js");
-const Cookies = require("../shared-package/cookies.js");
-const cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
-const HappySurvey = require("../missions-package/happy-survey.jsx");
-const DashboardActions = require('./datastores/dashboard-actions.js');
+const APIActionResults = require("../shared_package/api_action_results.js");
+const Cookies = require("../shared_package/cookies.js");
+const cookieStoreRenderer = require("../shared_package/cookie_store.handlebars");
+const HappySurvey = require("../missions_package/happy_survey.jsx");
+const DashboardActions = require('./datastores/dashboard_actions.js');
 const React = require("react");
-const UserMission = require("../missions-package/user-mission.js");
+const UserMission = require("../missions_package/user_mission.js");
 ```
 
 Yes:
@@ -130,12 +149,12 @@ const $ = require("jquery");
 const React = require("react");
 const _ = require("underscore");
 
-const APIActionResults = require("../shared-package/api-action-results.js");
-const Cookies = require("../shared-package/cookies.js");
-const DashboardActions = require('./datastores/dashboard-actions.js');
-const HappySurvey = require("../missions-package/happy-survey.jsx");
-const UserMission = require("../missions-package/user-mission.js");
-const cookieStoreRenderer = require("../shared-package/cookie-store.handlebars");
+const APIActionResults = require("../shared_package/api_action_results.js");
+const Cookies = require("../shared_package/cookies.js");
+const DashboardActions = require('./datastores/dashboard_actions.js');
+const HappySurvey = require("../missions_package/happy_survey.jsx");
+const UserMission = require("../missions_package/user_mission.js");
+const cookieStoreRenderer = require("../shared_package/cookie_store.handlebars");
 ```
 
 ------------------------------
@@ -233,3 +252,77 @@ once | <pre>{<br>&nbsp;&nbsp;&nbsp;&nbsp;method: () => {<br>&nbsp;&nbsp;&nbsp;&n
 once | <pre>var getResult = () => {<br>&nbsp;&nbsp;&nbsp;&nbsp;let val = $.when(...).then(...);<br>&nbsp;&nbsp;&nbsp;&nbsp;getResult = () => val;<br>&nbsp;&nbsp;&nbsp;&nbsp;return val;<br>};</pre> | <pre>var getResult = _.once(() => {<br>&nbsp;&nbsp;&nbsp;&nbsp;return $.when(...).then(...);<br>});</pre>
 sortBy | `result = result.sort((a, b) => a.prop - b.prop)` | `_.sortBy(result, "prop")`
 values | `Object.values(obj)` | `_.values(obj)`
+
+--------------------
+### Module pattern
+
+We use Browserify to package our code, so even small scripts should be node-style modules.
+
+#### Export constructor function
+
+Modules should export a single constructor function that can be then required
+and instantiated in a script to run it or in tests.
+
+
+For example for `my_module.js` as follows:
+```js
+const MyModule = function(){};
+module.exports = MyModule;
+```
+
+usage would be:
+
+```js
+const MyModule = require('./my_module');
+new MyModule();
+```
+
+
+#### Bundles
+
+Example bundle file structure:
+
+```
+my_module_bundle
+├── entry.js
+├── my_module.js
+└── tests
+    └── test_my_module.js
+```
+
+`my_module.js`:
+
+```js
+const MyModule = function(){};
+module.exports = MyModule;
+```
+
+If a module can be instantiated without any parameters `entry.js` can look like:
+
+```js
+const MyModule = require('./my_module');
+new MyModule();
+```
+
+and then in a template it would just need to be included in `<script>` tag:
+```html
+<script src="{% static_url 'dist/js/my_module_bundle.js' %}"></script>
+```
+
+In case code requires some parameters to run `entry.js` should export module instance
+that needs to be required and called in a script block in a template:
+
+```js
+const MyModule = require('./my_module');
+module.exports = new MyModule();
+```
+
+```html
+<script src="{% static_url 'dist/js/my_module_bundle.js' %}"></script>
+<script>
+  const myModule = require('my_module_bundle');
+  myModule.init({
+    value: "{% some data from the template %}"
+  });
+</script>
+```

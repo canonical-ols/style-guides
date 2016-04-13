@@ -34,6 +34,39 @@ module.exports = React.createClass({
 });
 ```
 
+#### Props validation
+
+Always validate props of components using [`propTypes` property](https://facebook.github.io/react/docs/reusable-components.html#prop-validation).
+
+Yes:
+```js
+const MyComponent = React.createClass({
+  propTypes: {
+    children: React.PropTypes.element.isRequired,
+    className: React.PropTypes.string,
+    onClick: React.PropTypes.function
+  },
+  
+  render: function() {
+    return <div className={this.prop.className} onClick={this.props.onClick}>
+      {this.props.children}
+    </div>
+  }
+});
+```
+
+No:
+
+```js
+const MyComponent = React.createClass({
+  render: function() {
+    return <div className={this.prop.className} onClick={this.props.onClick}>
+      {this.props.children}
+    </div>
+  }
+});
+```
+
 ### Using other libraries with React
 
 #### Minimize use of jQuery.

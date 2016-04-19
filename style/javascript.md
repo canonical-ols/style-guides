@@ -164,7 +164,7 @@ See [React Style Guide](react.md) for further details.
 ---------------
 ### ES6/7 rules
 
-We use Babel to compile our code from ES2015, so using new features from ES6/7 is encouraged.
+We use Babel to compile our code from ES2015, so using new features from ES6/7 is encouraged (although be aware of [exceptions](#exceptions)).
 
 Especially:
 
@@ -233,3 +233,9 @@ once | <pre>{<br>&nbsp;&nbsp;&nbsp;&nbsp;method: () => {<br>&nbsp;&nbsp;&nbsp;&n
 once | <pre>var getResult = () => {<br>&nbsp;&nbsp;&nbsp;&nbsp;let val = $.when(...).then(...);<br>&nbsp;&nbsp;&nbsp;&nbsp;getResult = () => val;<br>&nbsp;&nbsp;&nbsp;&nbsp;return val;<br>};</pre> | <pre>var getResult = _.once(() => {<br>&nbsp;&nbsp;&nbsp;&nbsp;return $.when(...).then(...);<br>});</pre>
 sortBy | `result = result.sort((a, b) => a.prop - b.prop)` | `_.sortBy(result, "prop")`
 values | `Object.values(obj)` | `_.values(obj)`
+
+#### Exceptions
+
+Favour ES5 in django templated scripts, as many ES6 features are not supported in browsers.
+
+For example, the `let` keyword is [not supported](http://caniuse.com/#search=let) in Safari 9.

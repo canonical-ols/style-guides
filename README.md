@@ -1,12 +1,12 @@
 # Canonical Online Services Coding Style Guides
 
-Following style guides should be applied to all new front-end related code.
+The following style guides should be applied to all new front-end related code.
 
 ## Dealing with legacy code
 
-When working with existing projects and code that doesn't follow the style guide we should still apply the rules to new code that is added to the project. To avoid unnecessary refactoring existing code should be left as it is unless the effort put into refactoing is not affecting the task being worked on (for example the code is quite short and it's worth updating it as a whole to apply to coding style).
+When working with an existing project that doesn't follow the style guide, new code added to that project should conform to the style guide.
 
-This will be left to the best judgement of developers in the team to decide how much they want and can refactor in legacy codebase.
+To avoid unnecessary refactoring, existing code should generally be left as it is unless only trivial effort is required to get the code into compliance with the style guide. This is left to the best judgement of developer.
 
 ## Language Style Guides
 

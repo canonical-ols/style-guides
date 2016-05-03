@@ -333,7 +333,7 @@ module.exports = new MyModule();
 
 #### Vendor scripts in Django templates
 
-Vendor scripts should be included in global script blocks to prevent raven error logging (may not be applicable to all project):
+Vendor scripts should be included in global script blocks to prevent raven error logging (may not be applicable to all projects):
 
 ```html
 {% block js_global %}

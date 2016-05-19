@@ -15,6 +15,7 @@
 * [ES6/7 rules](#es67-rules)
 
 * [Module pattern](#module-pattern)
+* [Django](#django)
 
 This guide is adapted from the Khan Academy style guide.
 
@@ -332,4 +333,17 @@ module.exports = new MyModule();
     value: "{% some data from the template %}"
   });
 </script>
+```
+
+--------------------
+### Django
+
+#### Vendor scripts in Django templates
+
+Vendor scripts should be included in global script blocks to prevent raven error logging (may not be applicable to all projects):
+
+```html
+{% block js_global %}
+<script src="{% static_url 'dist/vendor/lodash.min.js' %}"></script>
+{% endblock %}
 ```

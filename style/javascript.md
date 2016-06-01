@@ -347,3 +347,48 @@ Vendor scripts should be included in global script blocks to prevent raven error
 <script src="{% static_url 'dist/vendor/lodash.min.js' %}"></script>
 {% endblock %}
 ```
+
+#### Page scripts in Django templates
+
+Page scripts should be included in js_page block:
+
+```html
+{% block js_page %}
+<script src="{% static_url 'dist/js/page-bundle.js' %}"></script>
+{% endblock %}
+</script>
+```
+
+#### Inline scripts in templates
+
+Inline scripts in templates shouldn't be used if unnecessary. If possible, even short scripts should be written in separate JS file compiled by Babel and bundled.
+
+When a page script requires some data from the template (for example translation strings) it needs to be written inline in `<script>` tag rather then loaded from the file:
+
+```html
+{% block js_page %}
+<script>
+(function(){
+  var templateUrl = '{% url 'dp-some-route' %}';
+  var templateMsg = '{% trans "Translated string"|escapejs %}';
+  var example = require('example-bundle');
+
+  example.doSomething(templateUrl, templateMsg);
+})();
+</script>
+{% endblock %}
+```
+
+##### Don't use ES6/7 in inline scripts
+
+Inline scripts in templates are not compiles with Babel, which means that support for ES6 features depends on the browsers.
+Most notably features that are not available in inline scripts are:
+
+* [Arrow functions](http://caniuse.com/#feat=arrow-functions), use regular `function` instead of `=>`
+* [let](http://caniuse.com/#feat=let), use `var` instead of `let`
+* [const](http://caniuse.com/#feat=const), `const` even if supported as a keyword often doesn't really work as constant, so you may also use `var` to avoid confusion
+* [Template string literals](https://kangax.github.io/compat-table/es6/#test-template_literals), use string concatenation instead of `` `template ${strings}` ``
+
+When using ES6/7 features in inline scripts always take into account your project's
+browser support and consult [Can I Use](http://caniuse.com) and [ES6 compatibility tables](https://kangax.github.io/compat-table/es6/)
+to verify if given feature is supported in targeted browsers.

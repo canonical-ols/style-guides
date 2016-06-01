@@ -257,9 +257,12 @@ values | `Object.values(obj)` | `_.values(obj)`
 
 #### Exceptions
 
-Favour ES5 in django templated scripts, as many ES6 features are not supported in browsers.
+Favour ES5 when writing inline scripts in (Django, etc) templates, as many ES6 features are not supported in browsers.
 
 For example, the `let` keyword is [not supported](http://caniuse.com/#search=let) in Safari 9.
+
+For more info see [Inline scripts in templates](#inline-scripts-in-templates) below.
+
 
 --------------------
 ### Module pattern
